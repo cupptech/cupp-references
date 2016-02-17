@@ -1,0 +1,42 @@
+	<!-- 
+		Inheritance: li element inherit styles from parent ul element and body element.
+		https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity
+		Specificity Calculator: http://specificity.keegan.st/
+		Specificity: assign numeric value to each style.
+			Type selectors
+			Class, Attribute, and Pseudo-Class selectors
+			ID selectors
+
+	 -->
+
+<html>
+<head>
+	<title>Specificity</title>
+	<style type="text/css">
+		body {
+			color: red;
+		}
+		ul {
+			color: blue;
+		}
+		li {
+			color: orange;
+		}
+		.highlight {
+			color: yellow;
+		}
+		#special {
+			color: pink;
+		}
+	</style>
+</head>
+<body>
+	<p>HELLO.</p>
+	<ul>
+		<li id="special" class="highlight">AngularJS</li>
+		<li>JavaScript</li>
+		<li>Node.js</li>
+		<li class="highlight">MongoDB</li>
+	</ul>
+</body>
+</html>
