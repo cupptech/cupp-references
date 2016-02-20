@@ -1,0 +1,62 @@
+<html>
+<head>
+	<title>jQuery Effects</title>
+	<style type="text/css">
+		div {
+			width: 100px;
+			height: 100px;
+			background: teal;
+			float: left;
+			margin: 20px;
+		}
+	</style>
+</head>
+<body>
+	<button>Click Me</button>
+	<div>Block One</div>
+	<div>Block Two</div>
+	<div>Block Three</div>
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+</body>
+</html>
+
+	<script type="text/javascript">
+/*		
+		$('button').on('click', function(){
+			$('div').fadeOut(1000, function(){
+				console.log('Fade completed.');
+				$(this).remove();
+			});
+
+			// $('div').remove();
+		});
+*/
+/*
+		$('button').on('click', function(){
+			$('div').fadeIn(500);
+		});
+*/
+/*
+		$('button').on('click', function(){
+			$('div').fadeToggle(500);
+		});
+*/
+/*
+		$('button').on('click', function(){
+			$('div').slideDown(500);
+		});
+*/
+/*
+		$('button').on('click', function(){
+			$('div').slideUp(500);
+		});
+*/
+		$('button').on('click', function(){
+			$('div').slideToggle(500, function(){
+				console.log('Slide is done.');
+			});
+		});
+
+	</script>

@@ -1,0 +1,59 @@
+<html>
+<head>
+	<title>jQuery Events</title>
+</head>
+<body>
+	<h1>jQuery Events</h1>
+	<h1>jQuery Events</h1>
+
+	<button>Button One</button>
+	<button>Button Two</button>
+	<button>Button Three</button>
+
+	<input type="text">
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+	<script type="text/javascript">
+		$('h1').click(function(){
+			alert('h1 clicked');
+		});
+
+		$('h1').on('click', function(){
+			// $('h1').css('color', 'purple');
+			$(this).css('color', 'purple');
+		});
+
+		$('button').click(function(){
+			//alert('button clicked');
+			// jQuery object
+			$(this).css('background', 'pink');
+
+			var text = $(this).text();
+			console.log('You clicked ' + text);
+		});
+
+		$('button').on('mouseenter', function(){
+			$(this).css('font-weight', 'bold');
+		});
+
+		$('button').on('mouseleave', function(){
+			$(this).css('font-weight', 'normal');
+		});
+
+		$('input').keypress(function(event){
+			// javascript char codes key codes
+			if (event.which === 13) {
+				alert('You hit enter!');
+			}
+			// console.log(event);
+		});
+
+		$('input').on('keypress', function(){
+			console.log('keypressed');
+		});
+
+	</script>
+</body>
+</html>
+
