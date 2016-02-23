@@ -1,0 +1,13 @@
+<% include partials/header %>
+
+<h1>Hello, <%= name %></h1>
+
+<% if (name.toLowerCase() === 'cupp') {  %>
+	<p>Cupp is the Full-stack JavaScript Bootcamp.</p>
+<% } else { %>
+	<p>...</p>
+<% } %>
+
+<h2>This's the hello.ejs file.</h2>
+
+<% include partials/footer %>
