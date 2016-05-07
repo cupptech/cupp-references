@@ -1,0 +1,83 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// JavaScript Objects
+		// JavaScript objects are containers for named values.
+		// The values are written as name:value pairs (name and value separated by a colon).
+		// You define a JavaScript object with an object literal:
+		var person = {
+			firstName:"John", 
+			lastName:"Doe", 
+			city:'San Francisco', 
+			getFullName: function(){
+				return this.firstName + ' ' + this.lastName;
+			}
+		};
+
+		// Using the JavaScript Keyword new to create an object
+		var person = new Object();
+		person.firstName = "John";
+		person.lastName = "Doe";
+
+		// Using object constructor to create an object
+		function person(first, last) {
+		    this.firstName = first;
+		    this.lastName = last;
+		}		
+		var john = new person("John", "Doe");
+		var mike = new person("Mike", "Doe");
+
+		// Object Properties
+		// The name:values pairs are called properties.
+
+		// Object Methods
+		// Methods are stored in properties as function definitions, are actions that can be performed on objects.
+
+		// Accessing Object Properties
+		objectName.propertyName
+		objectName["propertyName"]
+		objectName.methodName()
+
+		// Deleting Properties
+		// The delete keyword deletes a property from an object.
+		// The delete operator is designed to be used on object properties. It has no effect on variables or functions.
+		delete objectName.propertyName
+
+		// Prototype Properties
+		// JavaScript objects inherit the properties of their prototype.
+		// The delete keyword does not delete inherited properties, but if you delete a prototype property, it will affect all objects inherited from the prototype.
+
+		// JavaScript for...in Loop
+		// The JavaScript for...in statement loops through the properties of an object.
+		for (variable in object) {
+		    code to be executed
+		}
+
+		// Avoid String, Number, and Boolean objects.
+		// When a JavaScript variable is declared with the keyword "new", the variable is created as an object.
+		// That complicate your code and slow down execution speed.
+		var x = new String(); 
+		var y = new Number(); 
+		var z = new Boolean();
+
+		// The this Keyword
+		/*
+		In JavaScript, the thing called this, is the object that "owns" the JavaScript code.
+		The value of this, when used in a function, is the object that "owns" the function.
+		The value of this, when used in an object, is the object itself.
+		The this keyword in an object constructor does not have a value. It is only a substitute for the new object.
+		The value of this will become the new object when the constructor is used to create an object.
+		*/
+
+		// JavaScript Objects are Mutable
+		// Objects are mutable: They are addressed by reference, not by value.
+		var person = {firstName:"John", lastName:"Doe", age:20}
+		var x = person;
+		x.age = 10;    		
+
+	</script>
+</body>
+</html>

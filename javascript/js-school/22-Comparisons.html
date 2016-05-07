@@ -1,0 +1,68 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// Comparison and Logical Operators
+		// Comparison and Logical operators are used to test for true or false.
+
+		// Comparison Operators
+		// Comparison operators are used to determine equality or difference between variables or values.
+		// Comparison operators can be used in conditional statements.
+		==	equal to
+		===	equal value and equal type
+		!=	not equal
+		!==	not equal value or not equal type
+		>	greater than
+		<	less than
+		>=	greater than or equal to
+		<=	less than or equal to
+
+		// Logical Operators
+		&&	and
+		||	or
+		!	not
+
+		// Conditional (Ternary) Operator
+		// Conditional operator assigns a value to a variable based on some condition.
+		variablename = (condition) ? value1:value2 
+
+		// Comparing Different Types
+		// Comparing data of different types may give unexpected results.
+		// When comparing a string with a number, JavaScript will convert the string to a number when doing the comparison. An empty string converts to 0. A non-numeric string converts to NaN which is always false.
+		2 < 12		true	
+		2 < "12"	true	
+		2 < "John"	false	
+		2 > "John"	false	
+		2 == "John"	false	
+		"2" < "12"	false	
+		"2" > "12"	true	
+		"2" == "12"	false
+
+		// To secure a proper result, variables should be converted to the proper type before comparison:
+		var age = Number(age); 
+
+		// Bitwise Operators
+		// Bit operators work on 32-bit signed numbers.
+		// Any numeric operand in the operation is converted into a 32-bit number.
+		// The result is converted back to a JavaScript number.
+		&	AND
+		|	OR
+		~	NOT
+		^	XOR
+		<<	Left shift
+		>>	Right shift
+
+		Example
+		5 & 1 		// 1
+		5 | 1 		// 5
+		~ 5 		// -6
+		5 ^ 1 		// 4
+		5 << 1 		// 10
+		5 >> 1 		// 2
+		~-1 		// 0
+
+	</script>
+</body>
+</html>

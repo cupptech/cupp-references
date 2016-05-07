@@ -1,0 +1,72 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// String Methods and Properties
+		// Primitive values cannot have properties or methods (because they are not objects).
+		// But with JavaScript, methods and properties are also available to primitive values, because JavaScript treats primitive values as objects when executing methods and properties.
+
+		// String Length
+		// The length property returns the length of a string.
+
+		// Finding a String in a String
+		// The indexOf() method returns the index of (the position of) the first occurrence of a specified text in a string.
+		// The lastIndexOf() method returns the index of the last occurrence of a specified text in a string.
+		// Both the indexOf(), and the lastIndexOf() methods return -1 if the text is not found.
+		// Both methods accept a second parameter as the starting position for the search.
+
+		// Searching for a String in a String
+		// The search() method searches a string for a specified value and returns the position of the match.
+		// The two methods, indexOf() and search(), are equal, but the search() method can take much more powerful search values(regular expressions).
+
+		// Extracting String Parts
+		// slice(start, end)
+		// substring(start, end)
+		// substr(start, length)
+
+		// The slice() Method
+		// slice() extracts a part of a string and returns the extracted part in a new string.
+		// The method takes 2 parameters: the starting index (position), and the ending index (position).
+		// If a parameter is negative, the position is counted from the end of the string.
+		// If you omit the second parameter, the method will slice out the rest of the string.
+
+		// The substring() Method
+		// substring() is similar to slice().
+		// The difference is that substring() cannot accept negative indexes.
+		// If you omit the second parameter, substring() will slice out the rest of the string.
+
+		// The substr() Method
+		// substr() is similar to slice().
+		// The difference is that the second parameter specifies the length of the extracted part.
+		// If you omit the second parameter, substr() will slice out the rest of the string.
+
+		// Replacing String Content
+		// The replace() method replaces a specified value with another value in a string.
+		// The replace() method can also take a regular expression as the search value.
+		// The replace() method does not change the string it is called on. It returns a new string.
+		var str = "Hello world.";
+		var newStr = str.replace(/world/g, 'cupp');
+
+		// Converting to Upper and Lower Case
+		// A string is converted to upper case with toUpperCase().
+		// A string is converted to lower case with toLowerCase().
+
+		// The concat() Method
+		// concat() joins two or more strings:
+		var text = "Hello".concat(" ","World!");
+		var text = "Hello" + " " + "World!";
+
+		// Extracting String Characters
+		// The charAt() method returns the character at a specified index (position) in a string.
+		// The charCodeAt() method returns the unicode of the character at a specified index in a string.
+
+		// Converting a String to an Array
+		// A string can be converted to an array with the split() method.
+		'hello'.split('');
+		'hello'.split();
+
+	</script>
+</body>
+</html>

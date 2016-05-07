@@ -1,0 +1,42 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// The Break Statement
+		// The break statement breaks the loop and continues executing the code after the loop.
+
+		// Example
+		// The following example iterates through the elements in an array until it finds the index of an element whose value is theValue:
+		for (var i = 0; i < a.length; i++) {
+		  if (a[i] == theValue) {
+		    break;
+		  }
+		}
+
+		// The Continue Statement
+		// The continue statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
+
+		// Example
+		for (i = 0; i < 10; i++) {
+		    if (i === 3) { continue; }
+		    console.log(i);
+		}
+
+		// label statement
+		// A label provides a statement with an identifier that lets you refer to it elsewhere in your program.
+		// Syntax
+		label :
+   			statement
+   		// The value of label may be any JavaScript identifier that is not a reserved word. The statement that you identify with a label may be any statement.
+
+   		// Example
+		markLoop:
+		while (theMark == true) {
+		   doSomething();
+		}
+
+	</script>
+</body>
+</html>

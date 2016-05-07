@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+	<title>Creating Custom Filter</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<div>
+		<h3>Custom Capitalize Filter:</h3>
+		<h2>{{ 'San Francisco is Sunny.' | lowercase | capitalize }}</h2>
+	</div>
+
+	<script type="text/javascript">
+
+		angular.module('myApp', ['myApp.filters']);
+
+		angular.module('myApp.filters', [])
+		.filter('capitalize', function(){
+			return function(input){
+				if (input) {
+					return input[0].toUpperCase() + input.slice(1);					
+				}
+			};
+		});
+
+	</script>
+</body>
+</html>

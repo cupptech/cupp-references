@@ -1,0 +1,58 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// JavaScript Strings
+		// JavaScript strings are used for storing and manipulating text.
+		var text = 'John';	// single quotes
+		var text = "John";	// double quotes
+		var text = "My name is 'John' ";
+
+		// String Length
+		// JavaScript String has a built-in property length.
+
+		// Special Characters
+		// The backslash \ escape character turns special characters into string characters.
+		var text = "My name is \"John\" ";
+
+		// The list of special characters that can be added to a text string with the backslash sign:
+		/*
+			\'	single quote
+			\"	double quote
+			\\	backslash
+			\n	new line
+			\r	carriage return
+			\t	tab
+			\b	backspace
+			\f	form feed
+		*/
+
+		// Breaking Long Code Lines
+		// If a JavaScript statement does not fit on one line, the best place to break it is after an operator:
+		document.getElementById("id1").innerHTML =
+			"Hello World.";
+
+		// You can also break up a code line within a text string with a single backslash:
+		document.getElementById("id1").innerHTML = "Hello \
+			World.";
+
+		// The safest way to break a long string is to use string addition:
+		document.getElementById("id1").innerHTML = "Hello" + 
+			" World.";
+
+
+		// String Objects
+		// Avoid using String Objects, JavaScript objects cannot be compared.
+		var x = 'John';
+		var y = new String('John');
+		var z = new String('John');
+		x == y
+		x === y
+		y == z
+		y === z
+
+	</script>
+</body>
+</html>

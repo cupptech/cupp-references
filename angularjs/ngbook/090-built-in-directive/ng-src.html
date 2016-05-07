@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+	<title>ng-src</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<h1>Wrong way</h1>
+	<img src="{{imgSrc}}">
+
+	<h1>Correct way</h1>
+	<img ng-src="{{imgSrc}}">
+
+	<script type="text/javascript">
+
+		angular.module('myApp', [])
+			.run(function($rootScope, $timeout){
+				$timeout(function(){
+					$rootScope.imgSrc = 'https://www.google.com/images/srpr/logo11w.png';
+				}, 2000);
+			});
+
+	</script>
+</body>
+</html>

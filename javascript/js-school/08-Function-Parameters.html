@@ -1,0 +1,41 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// Function Parameters and Arguments
+		// Function parameters are the names listed in the function definition.
+		// Function arguments are the real values passed to (and received by) the function.
+
+		// Parameter Rules
+		/*
+		JavaScript function definitions do not specify data types for parameters.
+		JavaScript functions do not perform type checking on the passed arguments.
+		JavaScript functions do not check the number of arguments received.
+		If a function is called with missing arguments (less than declared), the missing values are set to: undefined
+		*/
+
+		// The Arguments Object
+		// JavaScript functions have a built-in object called the arguments object.
+		// The argument object contains an array of the arguments used when the function was called (invoked).
+		function sumAll() {
+		    var i, sum = 0;
+		    for (i = 0; i < arguments.length; i++) {
+		        sum += arguments[i];
+		    }
+		    return sum;
+		}
+
+		// Arguments are Passed by Value
+		// JavaScript arguments are passed by value: The function only gets to know the values, not the argument's locations.
+		// If a function changes an argument's value, it does not change the parameter's original value.
+
+		// Objects are Passed by Reference
+		// In JavaScript, object references are values.
+		// Because of this, objects will behave like they are passed by reference.
+		// If a function changes an object property, it changes the original value.
+
+	</script>
+</body>
+</html>

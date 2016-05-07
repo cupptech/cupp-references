@@ -1,0 +1,154 @@
+## Problem
+	
+	Performance
+
+## Solution
+
+### watches, digest cycle 
+
+    The live binding between the view elements and model data is set up using watches. When a model changes, one or many watches linked to the model are triggered. Angular's view binding infrastructure uses these watches to synchronize the view with the updated model value.
+
+    Model change detection only happens when a digest cycle is triggered.
+
+    Angular does not track model changes in real time; instead, on every digest cycle, it runs through every watch to compare the previous and new values of the model to detect changes.
+
+    A digest cycle is triggered when $scope.$apply is invoked. A number of directives and services internally invoke $scope.$apply:
+
+        Directives such as ng-click, ng-mouse* do it on user action
+
+        Services such as $http and $resource do it when a response is received from server
+
+        $timeout or $interval call $scope.$apply when they lapse
+
+    A digest cycle tracks the old value of the watched expression and compares it with the new value to detect if the model has changed. Simply put, the digest cycle is a workflow used to detect model changes.
+
+    A digest cycle runs multiple times till the model data is stable and no watch is triggered.
+
+### Performance guidelines
+
+    Minimizing the number of binding expressions and hence watches
+
+    Making sure that binding expression evaluation is quick
+
+    Optimizing the number of digest cycles that take place
+
+### Performance useful pointers 
+
+	Keeping the page/view small
+
+	Optimizing watches for read-once data
+
+		Angular 1.3 has added support for bind and forget in the native framework. Using the syntax {{::title}}, we can achieve one-time binding. If you are on Angular 1.3, use it!
+
+	Hiding (ng-show) versus conditional rendering (ng-if/ng-switch) content
+
+	Expressions being watched should not be slow
+
+		To reiterate, Angular will evaluate a watched expression multiple times during every digest cycle just to know if the return value (a model) has changed and the view needs to be synchronized.
+
+		The first way we can make sure of this is by using properties instead of functions to bind expressions. These expressions are as follows:
+
+			{{user.name}}
+			ng-show='user.Authorized'
+
+		The preceding code is always better than this:
+
+			{{getUserName()}}
+			ng-show = 'isUserAuthorized(user)'
+
+		Try to minimize function expressions in bindings. If a function expression is required, make sure that the function returns a result quickly.
+
+
+	Minimizing the deep model watch
+
+
+		When using $scope.$watch to watch for model changes in controllers, be careful while setting the third $watch function parameter to true. The general syntax of watch looks like this:
+
+			$watch(watchExpression, listener, [objectEquality]);
+
+		In the standard scenario, Angular does an object comparison based on the reference only. But if objectEquality is true, Angular does a deep comparison between the last value and new value of the watched expression. This can have an adverse memory and performance impact if the object is large.
+
+	Handling large datasets with ng-repeat
+
+		Page data and use limitTo: Implement a server-side paging mechanism when a number of items returned are large.
+		Also use the limitTo filter to limit the number of items rendered. Its syntax is as follows:
+
+			<tr ng-repeat="user in users |limitTo:pageSize">…</tr>
+
+		Use the track by expression
+
+			<tr ng-repeat="user in users track by user.id">…</tr>
+
+			This allows us to use our own mechanism to identify an item. Using your own track by expression has a distinct advantage over the default hash key approach.
+
+			With user.id as a key, Angular is able to determine what elements were added/deleted and moved; it can also determine created/deleted DOM nodes for such elements. 
+
+		Do not bind ng-repeat to a function expression: Using a function's return value for ng-repeat can also be problematic, depending upon how the function is implemented.
+
+		Minimize filters in views, use filter elements in the controller: Filters defined on ng-repeat are also evaluated every time the digest cycle takes place. For large lists, if the same filtering can be implemented in the controller, we can avoid constant filter evaluation. This holds true for any filter function that is used with arrays including filter and orderBy.
+
+	Avoiding mouse-movement tracking events
+
+		The ng-mousemove, ng-mouseenter, ng-mouseleave, and ng-mouseover directives can just kill performance. If an expression is attached to any of these event directives, Angular triggers a digest cycle every time the corresponding event occurs and for events like mouse move, this can be a lot.
+
+	Avoiding calling $scope.$apply
+
+		Remember, every invocation of $apply results in the execution of a complete digest cycle.
+
+		The $timeout and $interval services take a Boolean argument invokeApply. If set to false, the lapsed $timeout/$interval services does not call $scope.$apply or trigger a digest cycle. Therefore, if you are going to perform background operations that do not require $scope and the view to be updated, set the last argument to false.
+
+		Also, understand the difference between $scope.$apply and $scope.$digest. $scope.$apply triggers $rootScope.$digest that evaluates all application watches whereas, $scope.$digest only performs dirty checks on the current scope and its children. If we are sure that the model changes are not going to affect anything other than the child scopes, we can use $scope.$digest instead of $scope.$apply.
+
+	Lazy-loading, minification, and creating multiple SPAs
+
+
+	Breaking applications into multiple SPAs
+
+		This advice may seem counterintuitive as the whole point of SPAs is to get rid of full page loads. By creating multiple SPAs, we break the app into multiple small SPAs, each supporting parts of the overall app functionality.
+
+		For example, we can break the Personal Trainer application into a Workout Builder app and a Workout Runner app. Both have their own start up page and scripts. Common scripts such as the Angular framework scripts and any third-party libraries can be referenced in both the applications. On similar lines, common controllers, directives, services, and filters too can be referenced in both the apps.
+
+		The advantage of breaking an app into multiple SPAs is that only relevant scripts related to the app are loaded. For a small app, this may be an overkill but for large apps, it can improve the app performance.
+
+	Lazy-loading modules
+
+		Lazy-loading modules or loading module on demand is a viable option for large Angular apps.
+
+	Caching remote data wherever appropriate
+
+		Caching data is the one of the oldest tricks in the book to improve any webpage/application performance. Analyze your GET requests and determine what data can be cached. Once such data is identified, it can be cached from a number of locations.
+
+		Cache data in memory: 
+			
+			var workouts;
+			service.getWorkouts = function () {
+			    if (workouts) return $q.resolve(workouts);
+			    return $http.get("/workouts").then(function (response)
+			 {
+			        workouts = response.data;
+			        return workouts;
+			    });
+			};
+
+		Angular $http cache:
+
+			$http.get(url, { cache: true});
+
+		We either need to get hold of the underlying $http cache store and clear the cache key manually (as shown here) or implement our own cache that manages cache data and invalidates cache based on some criteria:
+
+			var cache = $cacheFactory.get('$http');
+			cache.remove("http://myserver/workouts"); //full url
+
+	Using Batarang to measure performance
+
+		Using Batarang to visualize app usage is like looking at an X-Ray of the app. It allows us to:
+
+		    View the scope data, scope hierarchy, and how the scopes are linked to HTML elements
+
+   			Evaluate the performance of the application
+
+    		Check the application dependency graph, helping us understand how components are linked to each other, and with other framework components.		
+
+    	When building an app, use Batarang to gauge the most expensive watches and take corrective measures, if required.
+
+    	

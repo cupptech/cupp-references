@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+	<title>ng-bind</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<div ng-init="greeting='Hello World'">
+		<p ng-bind="greeting"></p>
+		{{ greeting }}
+		<div
+			ng-bind-template="{{ greeting }}, {{ greeting }}">
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		angular.module('myApp', [])
+	</script>
+</body>
+</html>

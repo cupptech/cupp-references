@@ -1,0 +1,54 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// JavaScript Function Definitions
+		// JavaScript functions are defined with the function keyword.
+		// You can use a function declaration or a function expression.
+
+		// Function Declarations
+		function functionName(parameters) {
+		  // code to be executed
+		}		
+
+		// Declared functions are not executed immediately. They are "saved for later use", and will be executed later, when they are invoked (called upon).
+		// Since a function declaration is not an executable statement, it is not common to end it with a semicolon.
+
+		// Function Expressions
+		// A function expression can be stored in a variable.
+		var x = function (a, b) {return a * b};
+		var z = x(4, 3);
+		// Functions stored in variables do not need function names. They are always invoked (called) using the variable name.
+		// The function above ends with a semicolon because it is a part of an executable statement.
+
+		// Function Hoisting
+		// Hoisting is JavaScript's default behavior of moving declarations to the top of the current scope.
+		// Hoisting applies to variable declarations and to function declarations.
+		// Because of this, JavaScript functions can be called before they are declared:
+		add(3, 5);
+
+		function add(x, y) {
+		    return x + y;
+		}
+		// Functions defined using an expression are not hoisted.
+
+		// Self-Invoking Functions (IIFE)
+		// Function expressions will execute automatically if the expression is followed by ().
+		// You have to add parentheses around the function to indicate that it is a function expression.
+		(function () {
+		    console.log('hello world');
+		})();
+
+		// Functions Can Be Used as Values
+		var x = add(3, 5) * 10;
+
+		// Functions are Objects
+		// The typeof operator in JavaScript returns "function" for functions.
+		// But, JavaScript functions can best be described as objects.
+		// JavaScript functions have both properties and methods.
+
+	</script>
+</body>
+</html>

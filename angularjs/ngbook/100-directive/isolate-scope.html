@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+	<title>isolate scope</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<div ng-init="myProperty = 'wow, this is cool'">
+		Surrounding scope: {{ myProperty }}
+		<div my-inherit-scope-directive></div>
+		<div my-directive><div>
+	</div>
+
+	<script type="text/javascript">
+		angular.module('myApp', [])
+		.directive('myDirective', function() {
+			return {
+				restrict: 'A',
+				template: 'Inside myDirective, isolate scope: {{ myProperty }}',
+				scope: {}
+			};
+		})
+		.directive('myInheritScopeDirective', function() {
+			return {
+				restrict: 'A',
+				template: 'Inside myDirective, isolate scope: {{ myProperty }}',
+				scope: true
+			};
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<title>ng-transclude</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<div sidebox title="Links">
+	    <ul>
+	      <li>First link</li>
+	      <li>Second link</li>
+	    </ul>
+	</div>
+
+	<div sidebox title="TagCloud">
+	    <div class="tagcloud">
+	      <a href="">Graphics</a>
+	      <a href="">AngularJS</a>
+	      <a href="">D3</a>
+	      <a href="">Front-end</a>
+	      <a href="">Startup</a>
+	    </div>
+	</div>
+
+	<script type="text/javascript">
+		angular.module('myApp', [])
+	    .directive('sidebox', function() {
+	      return {
+	        restrict: 'EA',
+	        scope: {
+	          title: '@'
+	        },
+	        transclude: true,
+	        template: '<div class="sidebox">\
+	          <div class="content">\
+	            <h2 class="header">{{ title }}</h2>\
+	            <span class="content" ng-transclude>\
+	            </span>\
+	          </div>\
+	        </div>'
+	      }
+	    })
+	</script>
+</body>
+</html>

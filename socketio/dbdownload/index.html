@@ -1,0 +1,39 @@
+<!doctype html>  
+<html lang="en">  
+    <head>
+
+    </head>
+    <body>
+        <h1>Download File</h1>
+
+        <button id="downloadBtn">Click me to download file</button>
+
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="/socket.io/socket.io.js"></script>    
+        <script src="/file_saver.js"></script>    
+
+        <script type="text/javascript">
+        	var downloadBtn = document.querySelector('#downloadBtn');
+        	downloadBtn.addEventListener('click', function(){
+        		console.log('Begin to download file...');
+        		socket.emit('downloadRequest', {databaseId: 1});
+        	});
+
+        	var socket = io.connect('http://localhost:5000/download');
+        	socket.on('connect', function(data){
+        		socket.emit('join', 'Client connected.');
+        	});
+        	socket.on('messages', function(data){
+        		console.log(data);
+        	});
+        	socket.on('downloadResponse', function(data){
+        		console.log(data);
+        		console.log('download file length: ', data.buffer.byteLength);
+
+        		var arrayBuffer = data.buffer;
+        		var blob = new Blob([arrayBuffer]);
+        		saveAs(blob, data.filename);
+        	});
+        </script>      
+    </body>
+</html>  

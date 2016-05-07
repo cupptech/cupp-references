@@ -1,0 +1,47 @@
+## Problem
+	
+	Communication and data sharing patterns
+
+## Solution
+
+### Communication and data sharing patterns
+
+	If data needs to be shared across pages, it can be done using route URLs. A route definition is something like this:
+
+		/builder/workouts/:id
+
+	It allows setting the id fragment (on the source page) to a value that is available on the target view controller, and other controllers that are available when the route is loaded using $routeParams.id.	
+
+### Using $scope
+
+	Given how scopes work, parent/child views can implicitly communicate with each other using the associated parent scope.
+
+	Use the parent scope as a communication channel. 
+
+	$rootScope should be avoided as this results in the creation of a global state, which is never a good thing.
+
+	Using $rootScope just to share data among controllers should be avoided. In fact, any global state can easily be managed using services as they too are singleton in nature.
+
+	The only reason $rootScope is useful is that it can be injected into services and can be used to broadcast/emit events at a global level.
+
+### Using services
+
+	Create a service and inject it into a controller, directive, or other service itself and you have a working communication channel. When service functions are invoked or data is manipulated, the changes are automatically available to any component that has the service dependency.
+
+### Inter-directive communication
+
+	How can two directives interact? If they are defined on the same HTML tag or follow a parent-child hierarchy, we can use the require attribute of the directive definition object.
+
+### Using events
+
+	Events are a great mechanism for communicating between components and while keeping them decoupled. A publisher component raises an event, and one or more subscribers can listen to the events and react to them. Events can be used across controllers, directives, filters, or services for communication.
+
+	    To publish $broadcast and $emit: $broadcast sends a message down the scope hierarchy and $emit sends a message up the hierarchy.
+
+    	To subscribe $on.
+
+    But if the publisher and subscribers do not share a parent-child hierarchy, then the publisher can use $rootSope.$broadcast to communicate. $rootScope.$broadcast propagates the event through every available scope in the application.
+
+    While $emit and $broadcast are great mechanisms for communicating, we should be careful not to overuse them. Too many events can make an application difficult to understand and debug as the flow of the application is not linear any more.
+
+    

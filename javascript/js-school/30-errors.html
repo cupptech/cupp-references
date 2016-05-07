@@ -1,0 +1,61 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// Error
+		// The Error constructor creates an error object.
+		new Error('message');
+
+		// Throw an error
+		// Usually you create an Error object with the intention of raising it using the throw keyword.
+		try {
+		  throw new Error('Whoops!');
+		} catch (e) {
+		  console.log(e.name + ': ' + e.message);
+		}
+
+		// try...catch statement
+		/*
+		The try statement lets you test a block of code for errors.
+		The catch statement lets you handle the error.
+		The throw statement lets you create custom errors.
+		The finally statement lets you execute code, after try and catch, regardless of the result.
+		*/
+
+		try {
+		    // Block of code to try
+		}
+		catch(err) {
+		    // Block of code to handle errors
+		} 
+		finally {
+		    // Block of code to be executed regardless of the try / catch result
+		}
+
+		// Example
+		try {
+		  try {
+		    throw new Error("oops");
+		  }
+		  catch (ex) {
+		    console.error("inner", ex.message);
+		    throw ex;
+		  }
+		  finally {
+		    console.log("finally");
+		  }
+		}
+		catch (ex) {
+		  console.error("outer", ex.message);
+		}
+		// Output:
+		// "inner" "oops"
+		// "finally"
+		// "outer" "oops"		
+
+
+	</script>
+</body>
+</html>

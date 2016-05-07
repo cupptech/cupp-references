@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+	<title>ng-init</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<div ng-init="greeting='Hello'; person='World'">
+	    {{greeting}} {{person}}
+	</div>
+
+	<script type="text/javascript">
+
+		angular.module('myApp', [])
+
+	</script>
+</body>
+</html>

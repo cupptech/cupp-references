@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+	<title>routing</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+	<script type="text/javascript" src="https://code.angularjs.org/1.5.2/angular-route.min.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<header>
+		<h1>Header</h1>
+	</header>
+	<div class="content">
+		<div ng-view></div>
+	</div>
+	<footer>
+		<h5>Footer</h5>
+	</footer>
+
+	<script type="text/javascript">
+		angular.module('myApp', ['ngRoute'])
+		
+		.config(function($routeProvider){
+			$routeProvider
+				.when('/', {
+					controller: 'HomeController',
+					template: '<a href="#inbox/John">View Your Inbox</a>'
+				})
+				.when('/inbox/:name', {
+					controller: 'InboxController',
+					template: '\
+						<h1>Welcome to your inbox, {{ name }}</h1>\
+						<a href="#!/">Back</a>\
+					'
+				})
+				.otherwise({
+					redirectTo: '/'
+				});
+		})
+
+		.controller('HomeController', function(){
+			console.log('HomeController');
+		})
+
+		.controller('InboxController', function($scope, $routeParams){
+			$scope.name = $routeParams.name;
+		});
+	</script>
+</body>
+</html>

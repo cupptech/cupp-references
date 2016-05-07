@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+	<title>ng-app</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+
+	{{ someProperty }}
+	<button ng-click="someAction()">Communicate</button>
+
+	<script type="text/javascript">
+
+		angular.module('myApp', [])
+			.run(function($rootScope){
+		      $rootScope.someProperty = 'hello computer';
+		      $rootScope.someAction = function() {
+		        $rootScope.someProperty = 'hello human';
+		      };
+			});
+
+	</script>
+</body>
+</html>

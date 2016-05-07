@@ -1,0 +1,65 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// "use strict";
+		// The "use strict" directive is new in JavaScript 1.8.5 (ECMAScript version 5).
+		// It is not a statement, but a literal expression, ignored by earlier versions of JavaScript.
+		// The purpose of "use strict" is to indicate that the code should be executed in "strict mode".
+		// For example, with strict mode, you can not use undeclared variables.
+
+		// Declaring Strict Mode
+		// Strict mode is declared by adding "use strict"; to the beginning of a JavaScript or a JavaScript function.
+		// Declared at the beginning of a JavaScript file, it has global scope (all code will execute in strict mode).
+		"use strict";
+
+		// Why Strict Mode?
+		/*
+		Strict mode makes it easier to write "secure" JavaScript.
+
+		Strict mode changes previously accepted "bad syntax" into real errors.
+
+		As an example, in normal JavaScript, mistyping a variable name creates a new global variable. In strict mode, this will throw an error, making it impossible to accidentally create a global variable.
+
+		In normal JavaScript, a developer will not receive any error feedback assigning values to non-writable properties.
+
+		In strict mode, any assignment to a non-writable property, a getter-only property, a non-existing property, a non-existing variable, or a non-existing object, will throw an error.
+		*/
+
+
+		// Not Allowed in Strict Mode
+
+		// Using a variable, without declaring it, is not allowed:
+		"use strict";
+		x = 3.33;
+
+		// Deleting a variable (or object) is not allowed.
+		"use strict";
+		var x = 3.14;
+		delete x;  
+
+		// Duplicating a parameter name is not allowed:
+		"use strict";
+		function x(p1, p1) {};
+
+		// Octal numeric literals are not allowed:
+		"use strict";
+		var x = 010; 
+
+		// Deleting an undeletable property is not allowed:
+		"use strict";
+		delete Object.prototype;
+
+		// The string "arguments" cannot be used as a variable:
+		"use strict";
+		var arguments = 3.33;
+
+		//The with statement is not allowed:
+		"use strict";
+		with (Math){x = random()};		
+
+	</script>
+</body>
+</html>

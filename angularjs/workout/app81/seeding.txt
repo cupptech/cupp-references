@@ -1,0 +1,41 @@
+## Problem
+	
+	Seed projects
+
+## Solution
+
+### Building a new app
+	
+Seed projects
+
+	angular-seed (https://github.com/angular/angular-seed): This is a prescriptive guide for the Angular team itself. It specifically targets how to set up code for development and unit testing an Angular application. It does not come with any third-part integration. Download/clone it and we are ready to go.
+
+	ng-boilerplate (http://joshdmiller.github.io/ng-boilerplate/): This is a more complete and a very useful seed project. The project structure we have used for our apps derives heavily from ng-boilerplate. It has basically everything and uses LESS for CSS, Twitter Bootstrap for views, Font Awesome for icons/images, and the ever awesome angular-ui for some handy directives. It even comes with a predefined build setup using Grunt.
+
+Yeoman
+
+	Yeoman (http://yeoman.io/) is a suite of tools targeted toward web application development. It defines a workflow to build modern web applications. Yeoman consists of:
+
+	yo: This is a scaffolding tool to generate code on the fly.
+
+	Grunt: This is one of the most popular build systems on Node.
+
+	Bower: This is a package manager for the Web.
+
+	Scaffolding is the process of generating a code skeleton that can be built upon. Using scaffolding, we can save some initial effort and provide some guidance around how the overall structure of any coding artefact should look.
+
+	Checkout http://yeoman.io/generators/ for an exhaustive list of generators supported on Yeoman!
+
+Angular generator 
+
+	1. Angular generator (https://github.com/yeoman/generator-angular), which is the official Angular generator supported on Yeoman.
+	2. npm install -g generator-angular
+	3. run the generator:
+		mkdir angularApp
+		cd angularApp
+		yo angular
+	4. Follow the wizard and within no time a seed project is generated. Depending upon the generator used, the final code may vary, but the resultant project code uses Bower to manage script dependency and comes preconfigured with Grunt build tasks.
+	5. It is easy to verify that everything was set up correctly. Just run Grunt from the command line to compile and build the application, and it serves to see the new app in action.
+	6. Once the app is set up and running, we can use the yo subgenerators to generate routes, controllers, views, directives, and services. And the awesome part is that they are all included in the build automatically. No more updating the index.html file and adding dependencies; everything is taken care by Grunt. 
+	7. yo angular:route exercise
+	8. The Angular generator generates a view, a controller, and a controller test spec and also sets up the route for exercise. Grunt is watching and automatically picks the changes and refreshes the app. We can now load the page #/exercise and a standard view template is loaded. Automation at its very best!

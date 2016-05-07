@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+	<title>ng-href</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<a ng-href="{{myHref}}">I'm feeling lucky, when I load</a>
+
+	<a href="{{myHref}}">I'm feeling 404</a>
+
+	<script type="text/javascript">
+
+		angular.module('myApp', [])
+			.run(function($rootScope, $timeout){
+				$timeout(function(){
+					$rootScope.myHref = 'http://google.com';
+				}, 2000);
+			});
+
+	</script>
+</body>
+</html>

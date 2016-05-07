@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+	<title>First Directive</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+	<my-directive></my-directive><br>
+	<div my-directive></div><br>
+	<div class="my-directive"></div><br>
+	<!-- directive:my-directive --><br>
+
+	<script type="text/javascript">
+
+		angular.module('myApp', [])
+			.directive('myDirective', function(){
+				return {
+					restrict: 'AECM',
+					replace: true,
+					template: '<a href="http://google.com">Click me to go to Google</a>'
+				};
+			});
+
+	</script>
+</body>
+</html>

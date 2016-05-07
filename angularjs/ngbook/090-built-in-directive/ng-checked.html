@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+	<title>ng-checked</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<p>someProperty = {{ someProperty }}</p>
+	<input type="checkbox" 
+		ng-checked="someProperty"
+		ng-init="someProperty = false"
+		ng-model="someProperty">
+
+	<script type="text/javascript">
+
+		angular.module('myApp', [])
+
+	</script>
+</body>
+</html>

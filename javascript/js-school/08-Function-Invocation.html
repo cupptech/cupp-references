@@ -1,0 +1,61 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// The this Keyword
+		// In JavaScript, the thing called this, is the object that "owns" the current code.
+		// The value of this, when used in a function, is the object that "owns" the function.
+
+		// Invoking a JavaScript Function
+		// The code in a function is not executed when the function is defined. It is executed when the function is invoked.
+
+		// Invoking a Function as a Function
+		function add(a, b) {
+		    return a + b;
+		}
+		add(10, 2);  	
+		// In a browser the page object is the browser window. The function above automatically becomes a window function.
+		// add() and window.add() is the same function.
+		// When a function is called without an owner object, the value of this becomes the global object.
+
+		// Invoking a Function as a Method
+		// In JavaScript you can define function as object methods.
+		var myObject = {
+		    firstName:"John",
+		    lastName: "Doe",
+		    getFullName: function () {
+		        return this.firstName + " " + this.lastName;
+		    }
+		}
+		myObject.getFullName();         // Will return "John Doe"
+		// The getFullName method is a function. The function belongs to the object. myObject is the owner of the function.
+    	// The thing called this, is the object that "owns" the JavaScript code. In this case the value of this is myObject.
+
+    	// Invoking a Function with a Function Constructor
+    	// If a function invocation is preceded with the new keyword, it is a constructor invocation.
+    	// The this keyword in the constructor does not have a value.
+    	// The value of this will be the new object created when the function is invoked.
+
+		// This is a function constructor:
+		function myFunction(arg1, arg2) {
+		    this.firstName = arg1;
+		    this.lastName  = arg2;
+		}
+
+		// This	creates a new object
+		var x = new myFunction("John","Doe");    	
+
+		// Invoking a Function with a Function Method
+		// call() and apply() are predefined JavaScript function methods. Both methods can be used to invoke a function, and both methods must have the owner object as first parameter.
+		add.call(myObject, 10, 2); 
+		add.apply(myObject, [10, 2]); 
+		// Both methods takes an owner object as the first argument. The only difference is that call() takes the function arguments separately, and apply() takes the function arguments in an array.
+		// In JavaScript strict mode, the first argument becomes the value of this in the invoked function, even if the argument is not an object.
+		// In "non-strict" mode, if the value of the first argument is null or undefined, it is replaced with the global object.
+
+
+	</script>
+</body>
+</html>

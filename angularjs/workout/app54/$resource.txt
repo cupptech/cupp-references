@@ -1,0 +1,112 @@
+## Problem
+	
+	Getting started with $resource
+
+## Solution
+
+### Getting started with $resource
+
+	Representational State Transfer (REST) is an architectural style that defines the components of a system as resources. 
+	
+	The RESTful service over HTTP has at least these common traits:
+
+	    Resources are defined using URLs. These are some of the resources:
+
+	        There is a collection resource with the URL format as http://myserver.com/resources
+
+	        There is a collection item resource with the URL format http://myserver.com/resources/id, where id identifies a specific resource in the collection
+
+	    The HTTP verb GET is used to retrieve data for collection or the collection item resource
+
+	    HTTP POST is used to create a new resource
+
+	    HTTP PUT is used to update a resource
+
+	    HTTP DELETE is used to delete a resource
+
+	AngularJS provides the $resource service that specifically targets server implementations that have RESTful HTTP endpoints. 
+
+### $resource basics
+
+	The $resource service is an abstraction built over the $http service, and makes consuming RESTful services (server-based) easy. A resource in AngularJS is defined as follows:	
+
+		$resource(url, [paramDefaults], [actions]);
+
+		- url: This specifies the endpoint URL. 
+		- paramDefaults: This parameter serves a dual purpose. For parameterized URLs, paramDefaults provides a default replacement whereas any extra values in the paramDefaults object are added to a query string.
+		- actions: This parameter is nothing but a JavaScript function attached to the $resource object to perform a specific task. The $resource object comes with a standard set of operations that are common to every resource such as get, query, save, and delete. This actions parameter is used to extend the default list of actions with our own custom action or alter any predefined action.
+
+		Consider a resource url /users/:name.
+
+		{}								/users
+		{name:'david'}					/users/david
+		{search:'david'}				/users?search=david
+		{name:'david', search:'out'}	/users/david?search=out 
+
+	Understanding $resource actions:
+
+		var Exercises = $resource('https://api.mongolab.com/api/1/databases/angularjsbyexample/collections/exercises/:param,{},{update:{action:PUT'}});
+
+		This statement creates a Resource class named Exercises with a total of six class-level actions namely get, save, update, query, remove, and delete. 
+
+	The actions parameter declaration looks like this:
+
+		actions:{action1: config, action2 : config, action3 : config}
+
+		This line defines three actions and configurations for those actions. The config object is the same object passed as a parameter to $http.
+
+	For the five default actions on $resource the standard config is:
+
+		{   'get':    {method:'GET'},
+		    'save':   {method:'POST'},
+		    'query':  {method:'GET', isArray:true},
+		    'remove': {method:'DELETE'},
+		    'delete': {method:'DELETE'}
+		};
+
+	$resource action invocation:
+
+		Exercises.query();// get all workouts
+		Exercises.get({id:'test'}); // get exercise with id 'test'
+		Exercises.save({},workout); // save the workout
+
+	For action methods based on GET, the general syntax is as follows:
+
+		Exercises.actionName([parameters],[successcallback], [errorcallback]);
+
+	And for POST actions (save and update), the general syntax is as follows:
+
+		Exercises.actionName([parameters], [postData], [successcallback], [errorcallback]);
+
+	When a resource action is invoked, it returns a Resource object or an emtpy array.
+
+	And if we keep holding the returned value, then AngularJS fills this object or array with the response received from a server in future. This behavior results in code that is devoid of callback pattern implementation.
+
+		$scope.exercises = Exercises.query();
+
+	The preceding query invocation immediately returns an empty array. In future, when the response arrives, it is pushed into the array. And due to the super awesome data-binding infrastructure that Angular has, any view bindings for the exercises array get automatically refreshed.
+
+	The resource object or collection returned as part of the action invocation contains some useful properties:
+
+	    $promise: This is the underlying promise for the request made. We can wait over it if desired, similar to the $http promise. Else, we can use the successcallback or errorcallback functions that we register when invoking the resource action.
+
+    	$resolved: This is True after the preceding promise has been resolved, false otherwise.
+
+
+### The $resource service with non-RESTful endpoints
+
+	As long as the HTTP endpoint returns and consumes JSON data (or data that can be converted to JSON), we can consume that endpoint using the $resource service. In such cases, we may need to create multiple Resource classes to target querying and CRUD-based operations. For example, consider these resources declarations:
+
+		$resource('/users/active'); //for querying
+		$resource('/users/createnew'); // for creation
+		$resource('/users/update/:id'); // for update
+
+	Summary
+
+    $resource is pretty useful for targeting RESTful service interactions. But still it can be used for non-RESTful endpoints.
+
+    $resource can reduce a lot of boilerplate code required for server interaction if an endpoint confirms to RESTful access patterns.
+
+    $resource action invocation returns a resource object or array that is updated in the future. This is in contrast with $http invocation that always returns a promise object.
+
+    Because $resource actions return resource objects, we can implement some scenarios without using callback. This still does not mean calls using the $resource service are synchronous.	

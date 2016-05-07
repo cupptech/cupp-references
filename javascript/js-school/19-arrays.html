@@ -1,0 +1,54 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// JavaScript Arrays
+		// JavaScript arrays are used to store multiple values in a single variable.
+
+		// Creating an Array
+		// Using an array literal is the easiest way to create a JavaScript Array.
+		// Never put a comma after the last element, The effect is inconsistent across browsers.
+		var array-name = [item1, item2, ...];  
+
+		// Use new Array() to create a JavaScript Array
+		var books = new Array('a','b','c');
+
+		// Access the Elements of an Array
+		// You refer to an array element by referring to the index number.
+		// Array indexes start with 0.
+		var book = books[0];
+		books[0] = 'book1';
+
+		// The length Property
+		// The length property of an array returns the length of an array (the number of array elements).
+		// The length property is always one more than the highest array index.
+		books.length;
+
+		// Adding Array Elements
+		// Add a new element to an array is using the push method
+		books.push('book2');
+
+		// Looping Array Elements
+		// Using a "for" loop to loop through an array
+		for (i=0; i<books.length; i++) {}
+
+		// The Difference Between Arrays and Objects
+		// In JavaScript, arrays use numbered indexes.  
+		// In JavaScript, objects use named indexes.
+
+		// Avoid new Array()
+		// Creates an array with 40 undefined elements
+		var books = new Array(40); 
+
+		// Recognize an Array
+		// ECMAScript 5 defines a new method Array.isArray() to recognize an Array.
+		Array.isArray(books); 
+
+		// The instanceof operator returns true if an object is created by a given constructor:   
+		books instanceof Array;
+
+	</script>
+</body>
+</html>

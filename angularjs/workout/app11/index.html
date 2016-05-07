@@ -1,0 +1,44 @@
+<html>
+<head>
+	<title>Guess the Number.</title>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+</head>
+<body ng-app="app">
+	<div class="container" ng-controller="GuessNumberController">
+		<h2>Guess the Number</h2>
+		<p class="well lead">Guess the random number between 1 and 100.</p>
+		<label>Your Guess:</label>
+		<input type="number" ng-model="guess">
+		<button ng-click="verifyGuess()" class="btn btn-primary btn-sm">Verify</button>
+		<button ng-click="initializeGame()" class="btn btn-warning btn-sm">Restart</button>
+		<p>
+			<p ng-show="deviation<0" class="alert alert-warning">Your guess is higher.</p>
+			<p ng-show="deviation>0" class="alert alert-warning">Your guess is lower.</p>
+			<p ng-show="deviation===0" class="alert alert-success">Yes, that's it.</p>
+		</p>
+		<p class="text-info">No of guess: <span class="badge">{{noOfTries}}</span></p> 
+	</div>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+	<script type="text/javascript">
+
+		angular.module('app', [])
+			.controller('GuessNumberController', GuessNumberController);
+
+		function GuessNumberController($scope) {
+			$scope.verifyGuess = function() {
+				$scope.deviation = $scope.original - $scope.guess;
+				$scope.noOfTries++;
+			};
+			$scope.initializeGame = function(){
+				$scope.original = Math.floor(Math.random()*100 + 1);
+				$scope.noOfTries = 0;
+				$scope.guess = null;
+				$scope.deviation = null;
+			};
+			$scope.initializeGame();
+		}
+	</script>
+
+</body>
+</html>

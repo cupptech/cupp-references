@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+	<title>Parsing Expression</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<div ng-controller="MyController">
+		<input ng-model="expr" type="text" placeholder="Enter an expression">
+		<h2>{{ parsedValue }}</h2>
+	</div>
+
+	<script type="text/javascript">
+		angular.module('myApp', [])
+			.controller('MyController', function($scope, $parse){
+				$scope.$watch('expr', function(newVal, oldVal, scope){
+					if (newVal !== oldVal) {
+						// Parse Angular expression
+						var parseFun = $parse(newVal);
+						// Get the value of the parsed expression
+						$scope.parsedValue = parseFun(scope);
+					}
+				});
+			});
+	</script>
+</body>
+</html>

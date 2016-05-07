@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+	<title>ng-disabled</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<h1>Demo 1</h1>
+	<input type="text" ng-model="someProperty" placeholder="Type to Enable">
+	<button ng-model="button" ng-disabled="!someProperty">A Button</button>
+
+	<h1>Demo 2</h1>
+	<textarea ng-disabled="isDisabled">Wait a second</textarea>
+
+	<script type="text/javascript">
+
+		angular.module('myApp', [])
+			.run(function($rootScope, $timeout){
+				$rootScope.isDisabled = true;
+				$timeout(function(){
+					$rootScope.isDisabled = false;
+				}, 1000);
+			});
+
+	</script>
+</body>
+</html>

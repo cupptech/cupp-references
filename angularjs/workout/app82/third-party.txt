@@ -1,0 +1,13 @@
+Useful third-party libraries
+
+In the Angular world, there are some third-party libraries/modules that we need to highlight as they have become the de facto choice in their respective problem domain. These libraries include:
+
+ 	ui-router (https://github.com/angular-ui/ui-router): Angular routing allows us to define a single main view (using ng-view) and drive the view through route changes. For some applications, this may be too limiting and hence they require a more capable routing infrastructure. The ui-router library overcomes this limitation, allowing us to define multiple siblings and nested views and link them through routes (referred to as states in the ui-router vocabulary). Any time the standard routing infrastructure is not working, we should explore the ui-router capabilities.
+
+	AngularUI (http://angular-ui.github.io/): This is a suite of tools for Angular. It has a number of gems such as ui-bootstrap, a drop-in replacement for Bootstrap JavaScript components; ng-grid, a grid component; and ui-router, that we have discussed already; and many more.
+
+	ng-grid (http://angular-ui.github.io/ng-grid/): If we are looking for a grid for Angular, this is the one to use. This is a feature-rich and highly customizable grid.
+
+ 	Restangular (https://github.com/mgonto/restangular): This is a replacement for the $resource service. A feature-rich service that is totally promise–based and supports nested resources, custom functions, and many more features.
+
+	Ionic Framework (http://ionicframework.com/): Ionic is a hybrid mobile app framework that allows us to build apps that target mobile devices. It uses HTML, CSS, and JavaScript, and has been optimized for AngularJS development.

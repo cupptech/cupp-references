@@ -1,0 +1,43 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// JavaScript Best Practices
+		// Avoid Global Variables
+		// All variables used in a function should be declared as local variables, put all declarations at the top of each script or function.
+		// It is a good coding practice to initialize variables when you declare them.
+
+		// Declare and initiate at the beginning
+		var firstName = "",
+		    lastName = "",
+		    price = 0,
+		    discount = 0,
+		    fullPrice = 0,
+		    myArray = [],
+		    myObject = {};
+
+		// Always treat numbers, strings, or booleans as primitive values. Not as objects.
+		var x = "John";             
+		var y = new String("John");
+		(x === y) // is false because x is a string and y is an object.
+
+		// Use === Comparison
+		// The == comparison operator always converts (to matching types) before comparison.
+		// The === operator forces comparison of values and type:		
+		0 == "";        // true
+		1 == "1";       // true
+		1 == true;      // true
+
+		0 === "";       // false
+		1 === "1";      // false
+		1 === true;     // false		
+
+		// Avoid Using eval()
+		// The eval() function is used to run text as code. In almost all cases, it should not be necessary to use it.
+		// Because it allows arbitrary code to be run, it also represents a security problem.
+
+	</script>
+</body>
+</html>

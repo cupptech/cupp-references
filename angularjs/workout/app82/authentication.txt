@@ -1,0 +1,105 @@
+## Problem
+
+	Handling authentication and authorization
+
+## Solution
+
+	The client side needs to adapt and integrate with the authentication and authorization requirement imposed by the server.
+
+	Any typical Angular application first loads partial views and then makes calls to pull data from the server and binds them to the views. Clearly, the views and the remote data API are the two assets that need to be secured.
+
+### Cookie-based authentication
+
+	Cookie-based authentication involves setting the browser cookie to track the user authentication session. 
+
+	The authentication cookie is a part of every request (added by the browser automatically) and the server uses this cookie to confirm its identity and whether the user is authenticated.
+
+	In a cookie-based application authentication, if the application wants to get the user context, a server endpoint (such as /user/details) is exposed that returns the logged in user-specific data. The client application can then implement a service such as UserService that loads and caches the user profile data.
+
+	The scenario described here assumes that the API server (the server that returns data) and the site where the application is hosted are in a single domain.
+
+	In such a setup, even if the API server is able to authenticate the request and send a cookie back to the client, the client application still does not send the authentication cookie on a subsequent request.
+
+	To fix this, we need to set a Boolean variable with credentials to true on the $http configuration object:
+
+		$http.get('api/users',{ withCredentials : true});
+
+	And the client will start attaching the authentication cookie for the cross-domain requests.
+
+	The server too needs to have cross-origin resource sharing (CORS) enabled and needs to respond in a specific manner for the request to succeed. It should set the access-control-allow-credentials header to true and the access-control-allow-origin header to the host site making the request.
+
+### Token-based authentication
+
+	Token-based access is all about sending the token (typically in HTTP headers) with each request instead of a cookie. 
+	Many public APIs (such as facebook and twitter) use token-based authentication. The format of the token, where it goes, and how it is generated depend upon the protocol used and the server implementation. Popular services that use token-based authentication implement the OAuth 2.0 protocol for token generation and exchange.
+
+	In a typical token-based authentication setup, the views are available publically, but the API is secured. If the application tries to pull data through API calls without attaching the appropriate token to the outgoing request, the server returns the HTTP 401 Unauthorized status code.
+
+	angular-http-auth (https://github.com/witoldsz/angular-http-auth): The preceding walkthrough can be easily implemented using this library, as it already has the http interceptor and events to support what we have described earlier.
+
+	ng-token-auth (https://github.com/lynndylanhurley/ng-token-auth): This is a comprehensive library that does much more than just authentication.
+
+### Handling authorization	
+
+	When working on an authorization requirement for any application, there are three essential elements that are part of the setup:
+
+	    The resources that need to be secured/authorized
+
+    	A list of roles and users that are part of these roles
+
+    	A mapping between the resources and the roles that defines who can access what
+
+    From an Angular app perspective, the resources are the pages, and sometimes sections of pages, that need to be restricted to specific roles. If the user is in a specific role, depending upon the role-resource mapping he/she gets access to some pages, else he/she is denied access.
+
+    Adding authorization support
+
+    To enable authorization, the first thing that we need to do is to expose the logged-in user data including roles throughout the application.
+
+		angular.module('app').factory('sessionContext', function () {
+		    var service;
+		    service.currentUser = function () {...}
+		    service.isUserInRole = function (roles) {...}
+		    service.authenticated = false;
+		    return service;
+		});    
+
+	The sessionContext service tracks the user login session and provides details such as the logged-in user (currentUser), whether the user is authenticated (authenticated), and the isUserInRole function that returns true or false based on whether the user is part of any of the roles passed into the roles parameter.
+
+	To restrict route access, we can use the route configuration to define what roles have access to which routes, and hence views.
+
+		$routeProvider.when('/admin', {
+		     templateUrl: 'admin.html',
+		     controller: 'AdminController',
+		     roles:['admin']
+		 });
+		$routeProvider.when('/home', {
+		     templateUrl: 'home.html',
+		     controller: 'HomeController',
+		     roles:[ 'admin', 'user']
+		 });
+
+	To make sure the route is not loaded for an unauthorized user, we can catch the $routeChangeStart event in either a root controller or the module run function and redirect the user to an unauthorized page appropriately.
+
+		angular.module('app').run(function ($rootScope, $location, SessionContext) {
+		    $rootScope.$on('$routeChangeStart', function (event, next) {
+		        if (next.roles && !SessionContext.authenticated) {
+		            $location.path('/login');  //needs to login
+		        }
+		        if (next.roles && SessionContext.authenticated && 
+		        !SessionContext.isInRole(next.roles)) {
+		            $location.path('/unauthorized'); //un-authorized
+		        }
+		    });
+		});
+
+	Conditionally rendering content based on roles:
+
+		<div  id='header'>
+		    <div> Welcome, {{userName}}</div>
+		    <div><a href='#/setting/my'>Settings</a></div>
+		    <div ng-if='isUserInRole(["admin"])'>
+		<a href='#/setting/site'>Site Settings</a>
+		</div>
+		</div>
+
+		

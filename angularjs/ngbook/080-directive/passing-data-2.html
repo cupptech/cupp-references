@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+	<title>Passing Data into a Directive</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<input type="text" ng-model="myUrl">
+	<div my-directive
+		my-url="{{myUrl}}"
+		my-link-text="Click me to go to Google">
+	</div>
+
+	<script type="text/javascript">
+
+		angular.module('myApp', [])
+			.directive('myDirective', function(){
+				return {
+					restrict: 'A',
+					replace: true,
+					scope: {
+						myUrl: '@',		// binding strategy
+						myLinkText: '@'	// binding stragegy
+					},
+					template: '<a href="{{myUrl}}">{{myLinkText}}</a>'
+				};
+			});
+
+	</script>
+</body>
+</html>

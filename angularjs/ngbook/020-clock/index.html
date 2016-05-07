@@ -1,0 +1,27 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+	<title>The Clock Example</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="MyController">
+		<h1>Hello {{ clock.now }}!</h1>
+	</div>
+
+	<script type="text/javascript">
+		// Create a module named 'myApp'
+		angular.module('myApp', [])
+			.controller('MyController', function($scope, $timeout){
+				$scope.clock = {};
+				var updateClock = function(){
+					$scope.clock.now = new Date();
+					$timeout(function(){
+						updateClock();
+					}, 1000);
+				};
+				updateClock();
+			});
+	</script>
+</body>
+</html>

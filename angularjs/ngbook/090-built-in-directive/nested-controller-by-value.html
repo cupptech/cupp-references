@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+	<title>ng-controller</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<div ng-controller="SomeController">
+	    {{ someBareValue }}
+	    <button ng-click="someAction()">Communicate to child</button>
+	    <div ng-controller="ChildController">
+	      {{ someBareValue }}
+	      <button ng-click="childAction()">Communicate to parent</button>
+	    </div>
+	</div>
+
+	<script type="text/javascript">
+
+		angular.module('myApp', [])
+			.controller('SomeController', function($scope){
+		      // anti-pattern, bare value
+		      $scope.someBareValue = 'hello computer';
+		      // set actions on $scope itself, this is okay
+		      $scope.someAction = function() {
+		        $scope.someBareValue = 'hello human, from parent';
+		      };
+			})
+			.controller('ChildController', function($scope){
+		      $scope.childAction = function() {
+		        $scope.someBareValue = 'hello human, from child';
+		      };
+		  	});
+	</script>
+</body>
+</html>

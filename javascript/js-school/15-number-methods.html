@@ -1,0 +1,72 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// Number Methods and Properties
+		// Primitive values cannot have properties and methods.
+		// But with JavaScript, methods and properties are also available to primitive values, because JavaScript treats primitive values as objects when executing methods and properties.
+
+		// The toString() Method
+		// toString() returns a number as a string.
+		(100 + 123).toString(); 
+
+		// The toExponential() Method
+		// toExponential() returns a string, with a number rounded and written using exponential notation.
+		// A parameter defines the number of characters behind the decimal point.
+		var x = 88.345;
+		x.toExponential(2);	// 8.83e+1
+
+		// The toFixed() Method
+		// toFixed() returns a string, with the number written with a specified number of decimals.
+		var x = 9.656;
+		x.toFixed(0);           // returns 10
+		x.toFixed(2);           // returns 9.66
+		x.toFixed(4);           // returns 9.6560
+
+		// The toPrecision() Method
+		// toPrecision() returns a string, with a number written with a specified length.
+		var x = 9.656;
+		x.toPrecision();        // returns 9.656
+		x.toPrecision(2);       // returns 9.7
+		x.toPrecision(4);       // returns 9.656
+		x.toPrecision(6);       // returns 9.65600
+
+		// The valueOf() Method
+		// The valueOf() method is used internally in JavaScript to convert Number objects to primitive values.
+		(123).valueOf();
+
+		// Converting Variables to Numbers
+		// Number(), can be used to convert JavaScript variables to numbers:
+		Number(true)
+		Number(false)
+		Number(new Date())
+		Number('100')
+		Number('100 200')
+
+		// parseInt() parses a string and returns a whole number. Spaces are allowed. Only the first number is returned.
+		parseInt("10");         // returns 10
+		parseInt("10.33");      // returns 10
+		parseInt("10 20 30");   // returns 10
+		parseInt("10 years");   // returns 10
+		parseInt("years 10");   // returns NaN 
+
+		// parseFloat() parses a string and returns a number. Spaces are allowed. Only the first number is returned:
+		parseFloat("10");        // returns 10
+		parseFloat("10.33");     // returns 10.33
+		parseFloat("10 20 30");  // returns 10
+		parseFloat("10 years");  // returns 10
+		parseFloat("years 10");  // returns NaN
+
+		// Number Properties
+		Number.MAX_VALUE
+		Number.MIN_VALUE
+		Number.NEGATIVE_INFINITY
+		Number.NaN
+		Number.POSITIVE_INFINITY
+		
+
+	</script>
+</body>
+</html>

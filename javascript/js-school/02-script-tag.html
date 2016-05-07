@@ -1,0 +1,42 @@
+<html>
+<head>
+	<script type="text/javascript">
+		function hello(){
+			document.getElementById("id1").innerHTML = "Hello world 2.";
+		}
+	</script>
+</head>
+<body>
+
+	<h1>script tag</h1>
+	<h2 id="id1">hello</h2>
+
+	<button onclick="hello()">Click me</button>
+
+	<script>
+		document.getElementById("id1").innerHTML = "Hello world 1.";
+	</script>
+
+	<script src="app.js"></script>
+
+	<script type="text/javascript">
+		// The type attribute is not required. 
+	</script>
+</body>
+</html>
+
+
+
+<!-- 
+script tag
+
+<script> tag can be placed in the <body> and the <head> sections of an HTML page.
+
+The type attribute is not required. JavaScript is the default scripting language in HTML.
+
+External scripts: to use an external script, put the name of the script file in the src attribute of a <script> tag:
+
+It is a good practice to place script tag at the bottom of the <body> element. This can improve page loading speed.
+Using external scripts, cached JavaScript files can speed up page loads
+-->
+

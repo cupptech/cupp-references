@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+	<title>Controller Hierarchy</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+	
+	<h1>Controller Hierarchy</h1>
+
+	<div ng-controller="ParentController">
+		<div ng-controller="ChildController">
+			<a href="#" ng-click="sayHello()" class="button">Say Hello</a>
+			{{ person }}
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var app = angular.module('myApp', []);
+		
+		app.controller('ParentController', function($scope){
+			$scope.person = {'greeted': true};
+		});
+	
+		app.controller('ChildController', function($scope){
+			$scope.sayHello = function(){
+				$scope.person.name = 'John Doe';
+			};
+		});
+
+	</script>
+</body>
+</html>

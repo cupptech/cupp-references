@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+	<title>First Controller</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<div ng-controller="MyController">
+		<h1>Simple Calculator</h1>
+		<button ng-click="add(1)" class="button">Add</button>
+		<a href="#" ng-click="subtract(1)" class="button alert">Subtract</a>
+		<h4>Current count: {{ counter }}</h4>
+	</div>
+
+	<script type="text/javascript">
+		angular.module('myApp', [])
+			.controller('MyController', function($scope){
+				$scope.counter = 0;
+				$scope.add = function(amount) {
+					$scope.counter += amount;
+				};
+				$scope.subtract = function(amount) {
+					$scope.counter -= amount;
+				};
+			});
+	</script>
+</body>
+</html>

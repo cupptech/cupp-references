@@ -1,0 +1,67 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// JavaScript Dates
+		// The Date object lets you work with dates (years, months, days, hours, minutes, seconds, and milliseconds)
+
+		// JavaScript Date Formats
+		/*
+		A JavaScript date can be written as a string:
+		Tue Apr 12 2016 16:26:05 GMT-0700 (Pacific Daylight Time)
+
+		or as a number:
+		1460503565913
+		Dates written as numbers, specifies the number of milliseconds since January 1, 1970, 00:00:00.
+		*/	
+
+		// Creating Date Objects
+		// Date objects are created with the new Date() constructor.
+		new Date()		// creates a new date object with the current date and time.
+		new Date(milliseconds)
+		new Date(dateString)
+		new Date(year, month, day, hours, minutes, seconds, milliseconds)
+		// JavaScript counts months from 0 to 11. January is 0. December is 11.
+
+		// Displaying Dates
+		// When you display a date object in HTML, it is automatically converted to a string, with the toString() method.
+		// The toUTCString() method converts a date to a UTC string (a date display standard).
+		// The toDateString() method converts a date to a more readable format.
+		
+		// Time Zones
+		// When setting a date, without specifying the time zone, JavaScript will use the browser's time zone.
+		// When getting a date, without specifying the time zone, the result is converted to the browser's time zone.
+
+		// JavaScript ISO Dates
+		// ISO 8601 is the international standard for the representation of dates and times.
+		var d = new Date("2016-04-12");
+		var d = new Date("2016-04");
+		var d = new Date("2016");
+		// It can be written with added hours, minutes, and seconds (YYYY-MM-DDTHH:MM:SS):
+		var d = new Date("2016-04-12T12:00:00");
+
+		// JavaScript Long Dates
+		// Long dates are most often written with a "MMM DD YYYY" syntax like this:
+		var d = new Date("Mar 25 2016");
+		var d = new Date("25 Mar 2016");
+		var d = new Date("January 25 2016");
+		var d = new Date("Jan 25 2016");
+		var d = new Date("JANUARY, 25, 2016");
+		// Commas are ignored. Names are case insensitive.
+
+		// JavaScript Short Dates
+		// Short dates are most often written with an "MM/DD/YYYY" / "YYYY/MM/DD" syntax.
+		// Month is written before day in all short date and ISO date formats.
+		var d = new Date("04/12/2016");
+		var d = new Date("2016/04/12");
+
+		// Full Date Format
+		// JavaScript will accept date strings in "full JavaScript format":
+		var d = new Date("Tue Apr 12 2016 16:26:05 GMT-0700 (Pacific Daylight Time)");
+
+		
+	</script>
+</body>
+</html>

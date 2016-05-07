@@ -1,0 +1,40 @@
+## Problem
+	
+	AngularJS request/response transformers
+
+## Solution
+
+	The job of a transformer or a transformer function is to transform the input data from one format to another. These transformers plug into the HTTP request/response processing pipeline of Angular and can alter the message received or sent. A good example of the transformation function usage is AngularJS global transformers that are responsible for converting a JSON string response into a JavaScript object and vice versa.
+
+	Transformer functions can be registered:
+
+		Globally for all requests/responses. The standard JSON string-object transformers are registered at a global level. To register global transformer function we need to push or shift a function either to the $httpProvider.defaults.transformRequest or $httpProvider.defaults.transformResponse array. As always with a pipeline, order of registration is important. Global transformer functions are invoked for every request made or response received using the $http service, depending upon the pipeline they are registered in.
+
+		Locally on a specific $http or $resource action invocation. The config object has two properties: transformRequest and transformResponse, which can be used to register any transformer function. Such a transformer function overrides any global transformation functions for that action.
+
+	Coming back to transformers! From an implementation standpoint, a transformer function takes a single argument, data, and has to return the transformed data.
+
+	Local transformation functions are useful if we do not want to use the global transformation pipeline and want to do something specific. The following example shows how to register a transformer at the action or HTTP request level:
+
+		service.Exercises = $resource(collectionsUrl + "/exercises/:id", {}, {
+			update: { method: 'PUT' },
+		    get: {
+		        transformResponse: function (data) {
+		            return JSON.parse(data); }
+		     }
+		});
+
+
+	Using a local transform function with specific $resource or $http overrides any global transformation function.
+
+	If we need to run global transform functions too, we need to create an array of transformers, containing both the global and custom transformers, and assign it to transformRequest or transformResponse, something like this:
+
+		service.Exercises = $resource(collectionsUrl + "/exercises/:id", {}, { 
+		update: { method: 'PUT' },
+		      get: {
+		        transformResponse: 
+		      $http.defaults.transformResponse.concat(function (value) {
+		        return doTransform(value); })
+		   }
+		});
+

@@ -1,0 +1,32 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1 id="id001"></h1>
+	<img id="image001" src="">
+	<button type="button" onclick="changeFont()">Change Font</button>
+
+	<script type="text/javascript">
+		// JavaScript can change HTML content
+		document.getElementById('id001').innerHTML = 'Hello World';
+
+		// JavaScript can change HTML Attributes
+		document.getElementById('image001').src = 'my-image.png';
+
+		// JavaScript can react on HTML events 
+		function changeFont(){
+			// JavaScript can change the style of an HTML element
+			document.getElementById('id001').style.fontSize = '100px';
+			document.getElementById('id001').style.color = 'blue';
+		}
+	</script>
+</body>
+</html>
+
+<!-- 
+JavaScript is the programming language of HTML and the Web, to program the behavior of web pages.
+JavaScript and Java are completely different languages, both in concept and design.
+JavaScript was invented by Brendan Eich in 1995, and became an ECMA standard in 1997.
+ECMA-262 is the official name. ECMAScript 6 (released in June 2015) is the latest official version of JavaScript.
+ -->

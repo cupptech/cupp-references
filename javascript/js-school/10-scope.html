@@ -1,0 +1,45 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// JavaScript Scope
+		// In JavaScript, scope is the set of variables, objects, and functions you have access to.
+
+		// Local Variables
+		// Variables declared within a JavaScript function, become LOCAL to the function.
+		// Since local variables are only recognized inside their functions, variables with the same name can be used in different functions.
+		// Local variables are created when a function starts, and deleted when the function is completed.
+		// Function arguments work as local variables inside functions.
+		function aFunction(){
+			var userName = 'John';
+			// code here can use userName
+		}
+
+		// Global Variables
+		// A variable declared outside a function, becomes GLOBAL.
+		// All scripts and functions on a web page can access it. 
+		var city = "San Francisco";
+		function aFunction(){
+			// code here can use 'city'
+		}
+
+		// Automatically Global
+		// If you assign a value to a variable that has not been declared, it will automatically become a GLOBAL variable.
+		// In non strict mode.
+
+		// code here can use userName
+		function aFunction(){
+			userName = 'John';
+			// code here can use userName
+		}
+
+
+		// Global Variables in HTML
+		// In HTML, the global scope is the window object: All global variables belong to the window object.
+		
+
+	</script>
+</body>
+</html>

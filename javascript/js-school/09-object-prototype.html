@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// Object Prototype
+		// Every JavaScript object has a prototype. The prototype is also an object.
+		// All JavaScript objects inherit their properties and methods from their prototype.
+		// Objects created using an object literal, or with new Object(), inherit from a prototype called Object.prototype.
+		// Objects created with new Date() inherit the Date.prototype.
+		// The Object.prototype is on the top of the prototype chain.
+
+		// Constructor function
+		// With a constructor function, you can use the new keyword to create new objects.
+		function person(first, last) {
+		    this.firstName = first;
+		    this.lastName = last;
+		}		
+
+		var p1 = new person("John", "Doe");
+		var p2 = new person("John", "Doe");
+
+		// The prototype Property
+		// The JavaScript prototype property allows you to add new properties to an existing prototype.
+		person.prototype.city = 'San Francisco';
+		person.prototype.getName = function() {
+			return this.firstName + " " + this.lastName;
+		};
+
+		
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+	<title>Built-in Filters</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+
+  <div ng-controller="MyController">
+    <div>{{ name | uppercase }}</div>
+    <div ng-bind="lowercaseName"></div>
+    <div>{{ 123.456789 | number:2 }}</div>
+    <div>{{ 123 | currency }}</div>
+
+    <h4>Date Helpers:</h4>
+    <div>{{ today | date:'medium' }}</div>		<!-- Mar 23, 2016 9:22:50 AM -->
+    <div>{{ today | date:'short' }}</div>		<!-- 3/23/16 9:22 AM -->
+    <div>{{ today | date:'fullDate' }}</div>	<!-- Wednesday, March 23, 2016 -->
+    <div>{{ today | date:'longDate' }}</div>	<!-- March 23, 2016 -->
+    <div>{{ today | date:'mediumDate' }}</div>	<!-- Mar 23, 2016 -->
+    <div>{{ today | date:'shortDate' }}</div>	<!-- 3/23/16 -->
+    <div>{{ today | date:'mediumTime' }}</div>	<!-- 9:22:50 AM -->
+    <div>{{ today | date:'shortTime' }}</div>	<!-- 9:22 AM -->
+    <div>Month in year: {{ today | date:'MMMM' }}</div>
+    <div>Short month in year: {{ today | date:'MMM' }}</div>
+    <div>Padded month in year: {{ today | date:'MM' }}</div>
+    <div>Month in year: {{ today | date:'M' }}</div>
+    <div>Padded day in month: {{ today | date:'dd' }} <!-- 23 --></div>
+    <div>Day in month: {{ today | date:'d' }} <!-- 9 --></div>
+    <div>Day in week: {{ today | date:'EEEE' }} <!-- Wednesday --></div>
+    <div>Short day in week: {{ today | date:'EEE' }} <!-- Wed --></div>
+    <div>Padded hour in day: {{ today | date:'HH' }} <!-- 09 --></div>
+    <div>Hour in day: {{ today | date:'H' }} <!-- 9 --></div>
+    <div>Padded hour in am/pm: {{ today | date:'hh' }} <!-- 09 --></div>
+    <div>Hour in am/pm: {{ today | date:'h' }} <!-- 9 --></div>
+    <div>Padded minute in hour: {{ today | date:'mm' }} <!-- 22 --></div>
+    <div>Minute in hour: {{ today | date:'m' }} <!-- 22 --></div>
+    <div>Padded second in minute: {{ today | date:'ss' }} <!-- 50 --></div>
+    <div>Second in minute: {{ today | date:'s' }} <!-- 50 --></div>
+    <div>Padded millisecond in second: {{ today | date:'.sss' }} <!-- .326 --></div>
+    <div>am/pm character: {{ today | date:'a' }} <!-- AM --></div>
+    <div>4 digit representation of timezone offset: {{ today | date:'Z' }} <!-- -0700 --></div>
+    <div>{{ today | date:'MMM d, y' }} <!-- Mar 23, 2016 --></div>
+    <div>{{ today | date:'EEEE, d, M' }} <!-- Wednesday, 23, 3 --></div>
+    <div>{{ today | date:'hh:mm:ss.sss' }} <!-- 09:22:50.326 --></div>
+    <div>{{ ['John', 'Doe', 'Likes', 'To', 'Eat', 'Pizza'] | filter:'e' }}</div>
+    <div>
+      {{ [{
+          'name': 'John',
+          'City': 'San Francisco',
+          'favorite food': 'Pizza'
+          }, {
+          'name': 'Mike',
+          'City': 'San Francisco',
+          'favorite food': 'indian food'
+          }] | filter:{'favorite food': 'Pizza'} }}
+    </div>
+    <div>{{ ['John', 'likes', 'to', 'travel'] | filter:isCapitalized }}</div>
+  </div>
+
+  <div>
+    <h5>Output JSON:</h5>
+    <div>{{ {'name': 'John', 'City': 'San Francisco'} | json }}</div>
+  </div>
+
+  <div>
+    <h5>limitTo:</h5>
+    <div>{{ ['a', 'b', 'c', 'd', 'e', 'f'] | limitTo:2 }}</div>
+  </div>
+
+  <div>
+    <h5>orderBy:</h5>
+    <div>
+      {{ [{
+          'name': 'John',
+          'status': 'awake'
+          }, {
+          'name': 'Q',
+          'status': 'sleeping'
+          }, {
+          'name': 'Mike',
+          'status': 'awake'
+          }] | orderBy: 'name': true }}
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+    angular.module('myApp', [])
+    .controller('MyController', function($scope, $filter) {
+      $scope.name = "John Doe";
+      $scope.lowercaseName = $filter('lowercase')('John');
+      $scope.today = new Date();
+      $scope.isCapitalized =
+        function(str) { return str[0] == str[0].toUpperCase(); }
+    });
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+	<title>ng-selected</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<label>Select Two Book</label>
+	<input type="checkbox" 
+		ng-model="isTwoBook">
+
+	<select>
+		<option>One Book</option>
+		<option ng-selected="isTwoBook">Two Book</option>
+	</select>
+
+	<script type="text/javascript">
+
+		angular.module('myApp', [])
+
+	</script>
+</body>
+</html>
